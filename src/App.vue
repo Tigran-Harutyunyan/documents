@@ -27,7 +27,7 @@ watch(
 
 <template>
   <ClerkLoading>
-    <div class="h-full flex items-center justify-center">
+    <div class="h-screen flex items-center justify-center">
       <Loader class="size-6 animate-spin text-muted-foreground" />
     </div>
   </ClerkLoading>

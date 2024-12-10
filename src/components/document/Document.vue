@@ -6,13 +6,14 @@ import { useGetDocumentById } from "@/api/useGetDocumentById";
 import { Id } from "../../../convex/_generated/dataModel";
 import { useEditorStore } from "@/store/useEditorStore";
 import { watch } from "vue";
+import { Loader } from "lucide-vue-next";
 
 interface documentProps {
   id: Id<"documents">;
 }
 const props = defineProps<documentProps>();
 
-const { data: document } = useGetDocumentById(props.id);
+const { data: document, isLoading } = useGetDocumentById(props.id);
 const { setEditorMargins } = useEditorStore();
 
 watch(
@@ -32,7 +33,10 @@ watch(
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#FAFBFD]" v-if="document">
+  <div v-if="isLoading" class="h-screen flex items-center justify-center">
+    <Loader class="size-6 animate-spin text-muted-foreground" />
+  </div>
+  <div class="min-h-screen bg-[#FAFBFD]" v-if="!isLoading && document">
     <div
       class="flex flex-col px-4 pt-2 gap-y-2 fixed top-0 left-0 right-0 z-10 bg-[#FAFBFD] print:hidden"
     >
