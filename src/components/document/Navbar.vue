@@ -287,7 +287,6 @@ const onPrint = () => {
       </div>
     </div>
     <div class="flex gap-3 items-center pl-6">
-      <!-- <Inbox /> -->
       <OrganizationSwitcher
         afterCreateOrganizationUrl="/"
         afterLeaveOrganizationUrl="/"
