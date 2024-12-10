@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed } from "vue";
+import { onMounted, onBeforeUnmount, computed } from "vue";
 import Ruler from "./Ruler.vue";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import { FontSizeExtension } from "@/extensions/font-size";
@@ -107,6 +107,10 @@ const editor = useEditor({
 
 onMounted(() => {
   editor?.value?.commands.setContent(props?.initialContent || "");
+});
+
+onBeforeUnmount(() => {
+  editor?.value?.destroy();
 });
 </script>
 
