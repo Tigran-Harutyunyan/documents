@@ -31,6 +31,18 @@ const getCurrentHeading = () => {
 
   return "Normal text";
 };
+
+const handleClick = (value: number) => {
+  if (value === 0) {
+    editor.value?.chain().focus().setParagraph().run();
+  } else {
+    editor.value
+      ?.chain()
+      .focus()
+      .toggleHeading({ level: value as Level })
+      .run();
+  }
+};
 </script>
 
 <template>
@@ -54,19 +66,7 @@ const getCurrentHeading = () => {
         v-for="{ label, value, fontSize } in headings"
         :key="value"
         :style="{ fontSize }"
-        @click="
-          () => {
-            if (value === 0) {
-              editor?.chain().focus().setParagraph().run();
-            } else {
-              editor
-                ?.chain()
-                .focus()
-                .toggleHeading({ level: value as Level })
-                .run();
-            }
-          }
-        "
+        @click="handleClick(value)"
         :class="
           cn(
             'flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-neutral-200/80',
