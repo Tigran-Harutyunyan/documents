@@ -5,7 +5,9 @@ import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from "@/constants/margins";
 
 export const useEditorStore = defineStore("editor-store", () => {
     const editor = ref<Editor | null>(null);
-    const editorMargins = ref([LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT])
+    const editorMargins = ref([LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT]);
+    const isUpdating = ref(false); // to trigger save to db
+    const editorContent = ref<string>("")
 
     function setEditor(edit: Editor | null) {
         editor.value = edit;
@@ -16,10 +18,18 @@ export const useEditorStore = defineStore("editor-store", () => {
         editorMargins.value = margins;
     }
 
+    function setUpdater(content: string) {
+        editorContent.value = content;
+        isUpdating.value = !isUpdating.value;
+    }
+
     return {
         editor,
         editorMargins,
+        isUpdating,
+        editorContent,
         setEditor,
-        setEditorMargins
+        setEditorMargins,
+        setUpdater
     };
 });
