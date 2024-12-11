@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Loader } from "lucide-vue-next";
 import { useRouter } from "vue-router";
-import { useAuth, ClerkLoaded, ClerkLoading, user } from "vue-clerk";
+import { useAuth, ClerkLoaded, ClerkLoading } from "vue-clerk";
 import { watch } from "vue";
 import { Toaster } from "@/components/ui/sonner";
 import { useUser } from "@/store/useUser";
